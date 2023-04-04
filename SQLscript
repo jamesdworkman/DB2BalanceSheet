@@ -1,0 +1,423 @@
+-Balance Sheet in Order - Current Year2.sql
+WITH BEGBALcte 
+AS
+(SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB1.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB4.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL 
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB5.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL 
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB6.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL 
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB7.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL 
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB8.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL 
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIB9.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL 
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIBA.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0
+UNION ALL
+SELECT  COMNO, GLANO,  BALFD -BALFC AS BegBal
+FROM AMFLIBB.GELMAS
+WHERE GLTYP = 1 AND BALFD-BALFC <>0),
+GLcte as
+(SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB1.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB1.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB4.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB4.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB5.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB5.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIBA.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIBA.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIBB.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIBB.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB6.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB6.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB7.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB7.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB8.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB8.CURHIS
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB9.TEMGEN
+UNION ALL
+SELECT JRFNO, COMNO, GLANO, EYEAR, EMNTH,
+CASE WHEN DRCRC ='C' THEN -1*GLAMT 
+ELSE GLAMT 
+END AS NormalizedAmount
+FROM AMFLIB9.CURHIS),
+TOTALcte as
+(SELECT COMNO, trim(GLANO) AS Account, sum(BEGBAL) AS Total
+FROM BEGBALcte
+GROUP BY COMNO, GLANO
+UNION ALL
+SELECT COMNO, trim(GLANO) AS Account, sum(NormalizedAmount) AS Total
+FROM GLcte
+-- Change year to last year to exclude it (current year is 120, 0 and 20 format depending on what company)
+WHERE EYEAR <> 119 AND EYEAR <> 120 AND EYEAR <> 121
+GROUP BY COMNO, GLANO),
+FScte as
+(SELECT comno, trim(Account) AS Account, sum(Total) AS Total,
+case
+when Account between 1000 and 1099 then 'Cash & Cash Equivalents'
+when Account between 1203 and 1203 then 'Accounts Receivable'
+when Account between 1204 and 1204 then 'Notes Rec. - Shareholders'
+when Account between 1205 and 1215 then 'Other Receivables'
+when Account between 1217 and 1217 then 'Bad Debt Reserve'
+when Account between 1220 and 1222 then 'Other Receivables'
+when Account between 1241 and 1241 then 'Cost in Excess of Billing'
+when Account between 1243 and 1259 then 'Intercompany'
+when Account between 1300 and 1379 then 'Gross Inventory'
+when Account between 1380 and 1380 then 'Inventory Reserve'
+when Account between 1381 and 1399 then 'Gross Inventory'
+when Account between 1400 and 1499 then 'Prepaids'
+when Account between 1601 and 1601 then 'Leasehold Improvements'
+when Account between 1602 and 1613 then 'Equipment Furniture Fixtures'
+when Account between 1651 and 1661 then 'Accum Depr & Amort'
+when Account between 1700 and 1701 then 'Investments'
+when Account between 1702 and 1702 then 'Goodwill'
+when Account between 1703 and 1708 then 'Investments'
+when Account between 1802 and 1802 then 'Deposits & Other'
+when Account between 1810 and 1813 then 'Other Assets'
+when Account between 2107 and 2109 then 'Short-Term Debt'
+when Account between 2201 and 2203 then 'Accounts Payable'
+when Account between 2205 and 2284 then 'Other Accrued Expenses'
+when Account between 2400 and 2462 then 'Accrued Payroll & Related'
+when Account between 2471 and 2471 then 'Other Accrued Expenses'
+when Account between 2513 and 2599 then 'Other Accrued Expenses'
+when Account between 2600 and 2600 then 'Deferred Revenue'
+when Account between 2601 and 2603 then 'Accrued Income Taxes'
+when Account between 2604 and 2604 then 'Billing in Excess of Cost'
+when Account between 2605 and 2605 then 'Deferred Income Taxes'
+when Account between 2703 and 2703 then 'Long-term Debt'
+when Account between 2704 and 2704 then 'Notes Payable LT - Leases'
+when Account between 2705 and 2705 then 'Notes Payable - Shareholders'
+when Account between 2706 and 2706 then 'Notes Payable - Comp. Income'
+when Account between 2901 and 2901 then 'Common Stock'
+when Account between 2902 and 2902 then 'Additional Paid in Capital'
+when Account between 2903 and 2903 then 'Other Comprehensive Income'
+when Account between 2930 and 2930 then 'Retained Earnings'
+when Account between 2940 and 2941 then 'Shareholder Distributions'
+when Account between 3100 and 3108 then 'Intercompany Sales'
+when Account between 3109 and 3144 then 'Customer Sales'
+when Account between 3145 and 3600 then 'Cost of Material/Cost of Sales'
+when Account between 5000 and 5999 then 'Research & Development'
+when Account between 6000 and 6999 then 'Overhead Costs'
+when Account between 7000 and 7999 then 'Selling & Marketing Expense'
+when Account between 8000 and 8999 then 'Administration Expense'
+when Account between 9000 and 9799 then 'Misc (Inc)Exp'
+when Account between 9800 and 9899 then 'Income Tax Provision'
+else 'Uncategorized'
+END AS Category,
+CASE 
+when Account < 3000 THEN 'Balance Sheet'
+when Account >= 3000 THEN 'Income Statement'
+else 'Uncategorized'
+END AS "Financial Statement"
+FROM Totalcte
+GROUP BY  COMNO, Account
+ORDER BY account, comno),
+INCOMESTATEMENTcte AS 
+(SELECT Category, Account,
+CASE WHEN COMNO = 1 THEN Sum(Total)
+ELSE NULL
+END AS "Moseley",
+CASE WHEN COMNO = 4 THEN Sum(Total)
+ELSE NULL
+END AS "Axxcss",
+CASE WHEN COMNO = 5 THEN Sum(Total)
+ELSE NULL
+END AS "CarrierComm",
+CASE WHEN COMNO = 6 THEN Sum(Total)
+ELSE NULL
+END AS "Axxcelera",
+CASE WHEN COMNO = 7 THEN Sum(Total)
+ELSE NULL
+END AS "Axxcss UK",
+CASE WHEN COMNO = 8 THEN Sum(Total)
+ELSE NULL
+END AS "SDRF",
+CASE WHEN COMNO = 9 THEN Sum(Total)
+ELSE NULL
+END AS "Egypt",
+CASE WHEN COMNO = 10 THEN Sum(Total)
+ELSE NULL
+END AS "E-Band",
+CASE WHEN COMNO = 11 THEN Sum(Total)
+ELSE NULL
+END AS "Remec",
+SUM(Total) AS "Total"
+FROM FScte
+GROUP BY Category, Account, COMNO),
+FINALcte as
+(SELECT 1 AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Cash & Cash Equivalents'
+GROUP BY Category
+UNION ALL
+SELECT '2' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Accounts Receivable'
+GROUP BY Category
+UNION ALL
+SELECT '3' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Bad Debt Reserve'
+GROUP BY Category
+UNION ALL
+SELECT '4' AS Sort, '   Net Accounts Receivable', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account = 1203 or Account = 1217
+UNION ALL
+SELECT '5' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Gross Inventory'
+GROUP BY Category
+UNION ALL
+SELECT '6' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Inventory Reserve'
+GROUP BY Category
+UNION ALL
+SELECT '7' AS Sort, '   Net Inventory', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 1300 AND 1399
+UNION ALL
+SELECT '8' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Prepaids'
+GROUP BY Category
+UNION ALL
+SELECT '9' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Other Receivables'
+GROUP BY Category
+UNION ALL
+SELECT '10' AS Sort, '          Total Current Assets', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 1000 AND 1241 or Account BETWEEN 1300 AND 1499
+UNION ALL
+SELECT '11' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Intercompany'
+GROUP BY Category
+UNION ALL
+SELECT '12' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Leasehold Improvements'
+GROUP BY Category
+UNION ALL
+SELECT '13' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Equipment Furniture Fixtures'
+GROUP BY Category
+UNION ALL
+SELECT '14' AS Sort, '   Gross Property & Equipment', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 1601 AND 1613
+UNION ALL
+SELECT '15' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Accum Depr & Amort'
+GROUP BY Category
+UNION ALL
+SELECT '16' AS Sort, '   Net Property & Equipment', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 1601 AND 1661
+UNION ALL
+SELECT '17' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Investments'
+GROUP BY Category
+UNION ALL
+SELECT '18' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Deposits & Other'
+GROUP BY Category
+UNION ALL
+SELECT '19' AS Sort, '          Total Assets', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 1000 AND 1999
+UNION all
+SELECT '20' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Accounts Payable'
+GROUP BY Category
+UNION all
+SELECT '21' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Accrued Payroll & Related'
+GROUP BY Category
+UNION all
+SELECT '22' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Other Accrued Expenses'
+GROUP BY Category
+UNION all
+SELECT '23' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Deferred Revenue'
+GROUP BY Category
+UNION all
+SELECT '24' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Accrued Income Taxes'
+GROUP BY Category
+UNION all
+SELECT '25' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Billing in Excess of Cost'
+GROUP BY Category
+UNION ALL
+SELECT '26' AS Sort, '          Total Current Liabilities', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 2000 AND 2605  
+UNION ALL
+SELECT '27' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Long-term Debt'
+GROUP BY Category
+UNION ALL
+SELECT '28' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Notes Payable - Shareholders'
+GROUP BY Category
+UNION all
+SELECT '29' AS Sort, '               Total Liabilities', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 2000 AND 2706
+UNION ALL
+SELECT '30' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Common Stock'
+GROUP BY Category
+UNION ALL
+SELECT '31' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Additional Paid in Capital'
+GROUP BY Category
+UNION ALL
+SELECT '32' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Other Comprehensive Income'
+GROUP BY Category
+UNION ALL
+SELECT '33' AS Sort, category, sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Category = 'Retained Earnings'
+GROUP BY Category
+UNION ALL
+SELECT '34' AS Sort, 'Net Income', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 3000 AND 9999
+UNION ALL
+SELECT '35' AS Sort, '               Total Stockholders Equity', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 2901 AND 9999
+UNION all
+SELECT '36' AS Sort, '                    Total Liabilities & Stockholder Equity', sum("Moseley") "Moseley", sum("Axxcss") "Axxcss", sum("CarrierComm") "CarrierComm", sum("Axxcelera") "Axxcelera", sum("Axxcss UK") "Axxcss UK", sum("SDRF") "SDRF", sum("Egypt") "Egypt", sum("E-Band") "E-Band", sum("Remec") "Remec",sum("Total") "Total"
+FROM INCOMESTATEMENTcte
+WHERE Account BETWEEN 2000 AND 9999)
+SELECT *
+FROM FINALcte
+ORDER BY Sort asc
+
+;
